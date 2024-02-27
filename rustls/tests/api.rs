@@ -5412,8 +5412,8 @@ fn test_acceptor() {
         io::ErrorKind::Other,
     );
     assert_eq!(
-        acceptor.accept().err(),
-        Some(Error::General("Acceptor polled after completion".into()))
+        acceptor.accept().err().unwrap().0,
+        Error::General("Acceptor polled after completion".into())
     );
 
     let mut acceptor = Acceptor::default();
